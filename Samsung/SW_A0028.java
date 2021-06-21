@@ -17,6 +17,8 @@ public class SW_A0028 {
         for (int test_case = 1; test_case <= T; test_case++) {
             N = Integer.parseInt(br.readLine());
             arr = new int[N][N];
+            zero = 0; 
+            one = 0;
 
             for(int i = 0; i < N; i++) {
                 st = new StringTokenizer(br.readLine());
@@ -24,7 +26,7 @@ public class SW_A0028 {
                     arr[i][j] = Integer.parseInt(st.nextToken());
                 }
             }
-
+            
             split(0, 0, N);
             System.out.println("#" + test_case + " " + zero + " " + one);
         }
