@@ -17,7 +17,7 @@ public class SW_A0009 {
 
         T = Integer.parseInt(br.readLine());
 
-        for(int t = T; t <= T; t++) {
+        for(int t = 1; t <= T; t++) {
             stz = new StringTokenizer(br.readLine());
             N = Integer.parseInt(stz.nextToken());
             
