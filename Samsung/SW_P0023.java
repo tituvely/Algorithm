@@ -30,6 +30,8 @@ public class SW_P0023 {
     }   
     
     public static int meaningful() {
+        int minCnt = 2 * N;
+
         int l = 0, r = K - 1;
         for(int i = l; i <= r; i++) {
             if(cnt[word[i]] == 0) {
@@ -41,15 +43,15 @@ public class SW_P0023 {
         while(true) {
             if(cnt[0] == K) {
                 if(cnt[word[l]] == 1) {
-                    return r - (l - 1); 
-                } else {
-                    cnt[word[l]]--;
-                    l++;
+                    minCnt = Math.min(minCnt, r - (l - 1));
+                    cnt[0]--;
                 }
+                cnt[word[l]]--;
+                l++;
             } else if(cnt[0] < K) {
                 r++;
-                if(r >= N)  return -1;
-                
+                if(r >= N) break;
+
                 if(cnt[word[r]] == 0) {
                     cnt[0]++;
                 }
@@ -57,5 +59,10 @@ public class SW_P0023 {
             }
         }
 
+        if(minCnt != 2 * N) {
+            return minCnt;
+        } else {
+            return -1;
+        }
     }
 }
