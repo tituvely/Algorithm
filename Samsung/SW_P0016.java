@@ -40,10 +40,10 @@ public class SW_P0016 {
 
             for(int i = 1; i <= H; i++) {
                 obstacle[i] = sukson[i] + jongyusuk[H - i + 1];
-                System.out.println(obstacle[i]);
             }
 
             minCnt = 2 * N;
+            minRangeCnt = 0;
             for(int i = 1; i <= H; i++) {
                 if(minCnt > obstacle[i]) {
                     minCnt = obstacle[i];
