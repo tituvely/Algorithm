@@ -26,15 +26,23 @@ public class SW_A0026 {
             Arrays.sort(L);
 
             int l = 0, r = N - 1;
+            boolean flag = false;
             while(l < r) {
                 if(L[l] + L[r] == X) {
-                    System.out.println("#" + t + " yes " + L[l] + " " + L[r]);
-                    return;
+                    flag = true;
+                    break;
+                } else if(L[l] + L[r] > X) {
+                    r--;
+                } else {
+                    l++;
                 }
-                l++;
-                r--;
             }
-            System.out.println("#" + t + " danger");
+
+            if(flag) {
+                System.out.println("#" + t + " yes " + L[l] + " " + L[r]);
+            } else {
+                System.out.println("#" + t + " danger");
+            }
         }
     }
 }
