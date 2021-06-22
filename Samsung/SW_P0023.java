@@ -23,7 +23,6 @@ public class SW_P0023 {
             cnt = new int[N + 1];
             for(int i = 0 ; i < N; i++) {
                 word[i] = Integer.parseInt(stz.nextToken());
-                cnt[word[i]]++;
             }
 
             System.out.println("#" + t + " " + meaningful());
@@ -31,63 +30,31 @@ public class SW_P0023 {
     }   
     
     public static int meaningful() {
-        int minCnt = -1;
-
-        // 전체 단어 종류의 개수가 K보다 작을 경우
-        for(int i = 1 ; i <= N; i++) {
-            if(cnt[i] != 0) {
-                cnt[0]++;       
-            }
-            if(i == N) {
-                if (cnt[0] < K) {
-                    return minCnt;
-                }
-            }
-        }
-
-        Arrays.fill(cnt, 0);
         int l = 0, r = K - 1;
-        for(int i = l ; i <= r; i++) {
+        for(int i = l; i <= r; i++) {
             if(cnt[word[i]] == 0) {
                 cnt[0]++;
-            } 
+            }
             cnt[word[i]]++;
         }
 
-        if(cnt[0] == K) {
-            minCnt = K;
-            return minCnt;
-        }
-
         while(true) {
-            r++;
-            if(r >= N) {
-                return minCnt;
-            }
-
-            if(cnt[word[r]] == 0) {
-                cnt[0]++;
-            }
-            cnt[word[r]]++;
-
             if(cnt[0] == K) {
-                break;
+                if(cnt[word[l]] == 1) {
+                    return r - (l - 1); 
+                } else {
+                    cnt[word[l]]--;
+                    l++;
+                }
+            } else if(cnt[0] < K) {
+                r++;
+                if(r >= N)  return -1;
+                
+                if(cnt[word[r]] == 0) {
+                    cnt[0]++;
+                }
+                cnt[word[r]]++;
             }
-        }
-
-        while(true) {
-            if(cnt[word[l]] > 1) {
-                l++;
-                cnt[word[l]]--;
-            }
-            else if(cnt[word[l]] == 1) {
-                return r - (l - 1);
-            }
-            
-            if(r - (l - 1) < K) {
-                return minCnt;
-            }
-
         }
 
     }
