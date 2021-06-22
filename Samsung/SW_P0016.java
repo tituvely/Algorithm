@@ -19,28 +19,39 @@ public class SW_P0016 {
             stz = new StringTokenizer(br.readLine());
             N = Integer.parseInt(stz.nextToken());
             H = Integer.parseInt(stz.nextToken());
-            obstacle = new int[N];
+            obstacle = new int[H+1];
             sukson = new int[H+1];
             jongyusuk = new int[H+1];
+            int height;
             for(int i = 0; i < N; i++) {
-                obstacle[i] = Integer.parseInt(br.readLine());
+                height = Integer.parseInt(br.readLine());
                 // 석순과 종유석을 높이별로 카운트
                 if(i % 2 == 0) {
-                    sukson[obstacle[i]]++;
+                    sukson[height]++;
                 } else {
-                    jongyusuk[obstacle[i]]++;
+                    jongyusuk[height]++;
                 }   
+            }
+
+            for(int i = H; i > 0; i--) {
+                sukson[i-1] += sukson[i];
+                jongyusuk[i-1] += jongyusuk[i];
+            }
+
+            for(int i = 1; i <= H; i++) {
+                obstacle[i] = sukson[i] + jongyusuk[H - i + 1];
+                System.out.println(obstacle[i]);
             }
 
             minCnt = 2 * N;
             for(int i = 1; i <= H; i++) {
-                if(minCnt > sukson[i] + jongyusuk[i]) {
-                    minCnt = sukson[i] + jongyusuk[i];
+                if(minCnt > obstacle[i]) {
+                    minCnt = obstacle[i];
                 }
             }
 
             for(int i = 1; i <= H; i++) {
-                if(minCnt == sukson[i] + jongyusuk[i]) {
+                if(minCnt == obstacle[i]) {
                     minRangeCnt++;
                 }    
             }
