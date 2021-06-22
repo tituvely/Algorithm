@@ -57,33 +57,38 @@ public class SW_P0023 {
         if(cnt[0] == K) {
             minCnt = K;
             return minCnt;
-        } else {
-            r++;
         }
-        
-        while(true) {
-            // 끝까지 탐색했을 경우
-            if(r > N) {
-                return minCnt;
-            }
 
-            // 앞 단어와 마지막 단어가 같을 경우
-            if(word[l] == word[r]) {
-                l++;
-                r++;
+        while(true) {
+            r++;
+            if(r >= N) {
+                return minCnt;
             }
 
             if(cnt[word[r]] == 0) {
                 cnt[0]++;
             }
             cnt[word[r]]++;
-            
+
             if(cnt[0] == K) {
-                minCnt = r - (l - 1);
+                break;
+            }
+        }
+
+        while(true) {
+            if(cnt[word[l]] > 1) {
+                l++;
+                cnt[word[l]]--;
+            }
+            else if(cnt[word[l]] == 1) {
+                return r - (l - 1);
+            }
+            
+            if(r - (l - 1) < K) {
                 return minCnt;
             }
 
-            r++;
         }
+
     }
 }
