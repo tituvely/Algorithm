@@ -27,7 +27,7 @@ public class SW_A0013 {
             MaxScore = 0;
             visited = new boolean[N];
             dfs(0, 0);
-            System.out.print(MaxScore);
+            System.out.println("#" + test_case + " " + MaxScore);
         }
     }
 
@@ -38,13 +38,9 @@ public class SW_A0013 {
         } else {
             for(int col = 0; col < N; col++) {
                 if(visited[col] == false) {
-                    sum = sum + score[row][col];
                     visited[col] = true;
-                    row = row + 1;
-                    dfs(row, sum);
-                    row = row - 1;
+                    dfs(row + 1, sum + score[row][col]);
                     visited[col] = false;
-                    sum = sum - score[row][col];
                 }
             }
         }
