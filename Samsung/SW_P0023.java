@@ -62,39 +62,28 @@ public class SW_P0023 {
         }
         
         while(true) {
-            // 단어의 개수가 K보다 작을 경우
-            if(r - (l - 1) < K) {
-                r++;
-            }
-
             // 끝까지 탐색했을 경우
             if(r > N) {
                 return minCnt;
             }
 
-            // 앞 단어와 마지막 단어가 같을 경우 앞의 인덱스를 증가시켜 줌
+            // 앞 단어와 마지막 단어가 같을 경우
             if(word[l] == word[r]) {
                 l++;
                 r++;
-                continue;
             }
-            // 다를 경우, 마지막 단어가 새로운 단어인지 체크해 줌
-            else {
-                if(cnt[word[r]] == 0) {
-                    cnt[0]++;
-                }
-                cnt[word[r]]++;
+
+            if(cnt[word[r]] == 0) {
+                cnt[0]++;
             }
+            cnt[word[r]]++;
             
             if(cnt[0] == K) {
                 minCnt = r - (l - 1);
                 return minCnt;
-            } else {
-                r++;
-                if(cnt[word[l]] > 1) {
-                    l++;
-                }
             }
+
+            r++;
         }
     }
 }
