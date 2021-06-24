@@ -96,14 +96,44 @@ public class SW_P0031 {
             // left 포인터가 right child면 현재 값을 result에 max/min으로 업데이트하고 left 포인터를 오른쪽으로 하나 당긴다
             if(left % 2 == 1) {
                 max = Math.max(max, tree[left][0]);
-                max = 
+                min = Math.min(min, tree[left][1]);
+                left++;
             }
             // right 포인터가 left child면 현재 값을 result에 max/min으로 업데이트하고 right 포인터를 왼쪽으로 하나 당긴다
+            if(right % 2 == 0) {
+                max = Math.max(max, tree[right][0]);
+                min = Math.min(min, tree[right][1]);
+                right--;
+            }
+
+            left /= 2;
+            right /= 2;
+        }
+        
+        maxSum = max;
+        minSum = min;
+    }
+
+    // 4. 힙 조건에 따라 리프노드의 부모노드를 따라 루트노드까지 값을 업데이트 한다
+    static void update(int index, int value) {
+        // index로 들어온 값을 tree배열에서 찾을 수 있는 leafNode의 인덱스로 바꿔준다.
+        int i = leafPointer + index;
+
+        // 리프노드의 값을 바꿈
+        tree[i][0] = value;
+        tree[i][1] = value;
+
+        // 부모노드
+        i /= 2;
+
+        // 부모노드로부터 루트노드까지 값을 update
+        // min/max heap인 경우, 부모 = min/max(left child, right child)
+        while(i > 0) {
+            tree[i][0] = Math.max(tree[i * 2][0], tree[(i * 2) + 1][0]);
+            tree[i][1] = Math.max(tree[i * 2][1], tree[(i * 2) + 1][1]);
+            i /= 2;
         }
 
-
-
     }
-    
 
 }
