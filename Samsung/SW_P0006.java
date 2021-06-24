@@ -26,7 +26,7 @@ public class SW_P0006 {
             stz = new StringTokenizer(br.readLine());
             N = Integer.parseInt(stz.nextToken());
             K = Integer.parseInt(stz.nextToken());
-            X = Integer.parseInt(stz.nextToken());
+            X = Long.parseLong(stz.nextToken());
 
             StringBuilder sb = new StringBuilder();
             sb.append("#" + t + " ");
