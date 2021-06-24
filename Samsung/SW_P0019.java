@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class SW_P0019 {
     static int T, N, Q;
     static int leafCount = 1, leafPointer = 0;
-    static int tree[];
+    static long tree[];
     static long totalSum;
     static final long MOD = 1000000007;
     
@@ -35,7 +35,6 @@ public class SW_P0019 {
                 query(q, a, b);
             }
             
-            totalSum %= MOD;
             bw.write("#" + t + " " + totalSum);
             bw.newLine();
         }
@@ -47,7 +46,7 @@ public class SW_P0019 {
             leafCount <<= 1;
         }
 
-        tree = new int[leafCount * 2];
+        tree = new long[leafCount * 2];
         leafPointer = leafCount - 1;
         
         for(int i = 1; i <= N; i++) {
@@ -86,6 +85,8 @@ public class SW_P0019 {
             right /= 2;
         }
 
+        // (a + b) % m = ((a % m) + (b % m)) % m
+        if(sum < 0) sum += MOD;
         totalSum += sum % MOD;
         totalSum %= MOD;
     }
