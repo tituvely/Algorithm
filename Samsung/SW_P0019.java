@@ -17,6 +17,8 @@ public class SW_P0019 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer stz;
 
+        System.out.println(-7 % 5);
+
         T = Integer.parseInt(br.readLine());
         for(int t = 1; t <= T; t++) {
             N = Integer.parseInt(br.readLine());
@@ -86,8 +88,10 @@ public class SW_P0019 {
         }
 
         // (a + b) % m = ((a % m) + (b % m)) % m
+        // (a - b) % m = ((a % m) - (b % m) + m) % m
+        sum = sum % MOD;
         if(sum < 0) sum += MOD;
-        totalSum += sum % MOD;
+        totalSum += sum;
         totalSum %= MOD;
     }
 
