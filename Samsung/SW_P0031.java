@@ -52,7 +52,7 @@ public class SW_P0031 {
                 query(q, a, b);
             }
             
-            bw.write("#" + t + " " + minSum + " " + maxSum);
+            bw.write("#" + t + " " + maxSum + " " + minSum);
             bw.newLine();
         }
         bw.flush();
@@ -110,8 +110,8 @@ public class SW_P0031 {
             right /= 2;
         }
         
-        maxSum = max;
-        minSum = min;
+        maxSum += max;
+        minSum += min;
     }
 
     // 4. 힙 조건에 따라 리프노드의 부모노드를 따라 루트노드까지 값을 업데이트 한다
@@ -130,10 +130,9 @@ public class SW_P0031 {
         // min/max heap인 경우, 부모 = min/max(left child, right child)
         while(i > 0) {
             tree[i][0] = Math.max(tree[i * 2][0], tree[(i * 2) + 1][0]);
-            tree[i][1] = Math.max(tree[i * 2][1], tree[(i * 2) + 1][1]);
+            tree[i][1] = Math.min(tree[i * 2][1], tree[(i * 2) + 1][1]);
             i /= 2;
         }
-
     }
 
 }
