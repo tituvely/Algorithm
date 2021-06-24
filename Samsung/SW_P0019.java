@@ -17,8 +17,6 @@ public class SW_P0019 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer stz;
 
-        System.out.println(-7 % 5);
-
         T = Integer.parseInt(br.readLine());
         for(int t = 1; t <= T; t++) {
             N = Integer.parseInt(br.readLine());
