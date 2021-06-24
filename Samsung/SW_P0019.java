@@ -23,12 +23,9 @@ public class SW_P0019 {
             Q = Integer.parseInt(br.readLine());
 
             initTree();
-        
-            for(int i = leafPointer; i > 0; i--) {
-                tree[i] = tree[i * 2] + tree[(i * 2) + 1];
-            } 
 
             int q, a, b;
+            totalSum = 0;
             for(int i = 0; i < Q; i++) {            
                 stz = new StringTokenizer(br.readLine());
                 q = Integer.parseInt(stz.nextToken());
@@ -38,6 +35,7 @@ public class SW_P0019 {
                 query(q, a, b);
             }
             
+            totalSum %= MOD;
             bw.write("#" + t + " " + totalSum);
             bw.newLine();
         }
@@ -55,6 +53,10 @@ public class SW_P0019 {
         for(int i = 1; i <= N; i++) {
             tree[leafPointer + i] = i;
         }
+        
+        for(int i = leafPointer; i > 0; i--) {
+            tree[i] = tree[i * 2] + tree[(i * 2) + 1];
+        } 
     }
 
     static void query(int q, int a, int b) {
@@ -63,7 +65,7 @@ public class SW_P0019 {
     }
 
     static void getSum(int left, int right) {
-        long sum = 0;
+        long sum = 0L;
         left += leafPointer;
         right += leafPointer;
 
@@ -101,7 +103,7 @@ public class SW_P0019 {
         // 부모노드로부터 루트노드까지 값을 update
         // 부모 = sum(left child, right child)
         while(i > 0) {
-            tree[i] = tree[i * 2] + tree[i * 2 + 1];
+            tree[i] = tree[i * 2] + tree[(i * 2) + 1];
             i /= 2;
         }
     }
