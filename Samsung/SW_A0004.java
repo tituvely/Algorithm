@@ -46,7 +46,7 @@ public class SW_A0004 {
 
             bw.write("#" + t + " " + cnt);
             for(int i = 1; i <= cnt; i++) {
-                bw.write(" " + index[cnt][0] + " " + index[cnt][1]);
+                bw.write(" " + index[i][0] + " " + index[i][1]);
             }
             bw.newLine();
         }
