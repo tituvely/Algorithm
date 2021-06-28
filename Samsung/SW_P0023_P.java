@@ -5,11 +5,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
+// Union-find
 public class SW_P0023_P {
     static int T, N, Q;
     static int a, b, c, answer;
-    static int parent[] = new int[10001];
-    static int rank[] = new int[10001];
+    static int parent[] = new int[100001];
+    static int rank[] = new int[100001];
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
