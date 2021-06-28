@@ -53,6 +53,7 @@ public class SW_A0015 {
             }
 
             bw.write("#" + t + " " + cnt + " " + max);
+            bw.newLine();
         }
         bw.flush();
     }
